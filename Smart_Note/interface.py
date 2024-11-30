@@ -30,8 +30,8 @@ layout2 = QHBoxLayout()
 
 panel_layout = QVBoxLayout()
 
-main_layout.addWidget (text_edit)
-main_layout.addLayout(panel_layout)
+main_layout.addWidget (text_edit, stretch= 3)
+main_layout.addLayout(panel_layout, stretch= 1)
 
 panel_layout.addWidget (label_note)
 panel_layout.addWidget (note_list_widget)
@@ -47,10 +47,9 @@ layout2.addWidget (delete_tag)
 panel_layout.addLayout(layout2)
 panel_layout.addWidget (search_tag)
 
-text_edit.setFixedSize(400,577)
+#text_edit.setFixedSize(400,577)
 window.setLayout (main_layout)
 
 
 
 window.show()
-app.exec_()
