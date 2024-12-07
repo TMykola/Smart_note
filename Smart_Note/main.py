@@ -15,6 +15,7 @@ def show_note():
     note_list_widget.addItems(list(data.keys()))
 
 def show_tag(name_note):
+    tag_list_widget.clear()
     tag_list_widget.addItems(data[name_note]["TAG"])
 
 def add_note():
@@ -25,7 +26,7 @@ def add_note():
 
 def add_tag():
     try:
-        name_file = note_list_widget.currentItem().text()
+        name_note = note_list_widget.currentItem().text()
         name_tag = QInputDialog().getText(QInputDialog(), "Введення тега:", "Введіть назву тега:")[0]
         data[name_file]["TAG"].append(name_tag)
         write_json(name_file, data)
@@ -77,6 +78,7 @@ delete_note.clicked.connect(remove_note)
 create_note.clicked.connect(add_note)
 save_note.clicked.connect(save_file)
 note_list_widget.clicked.connect(show_text)
+tag_list_widget.clicked.connect(show_text)
 
 show_note()
 app.exec_()
