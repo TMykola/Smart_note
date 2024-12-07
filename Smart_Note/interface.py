@@ -21,6 +21,7 @@ note_list_widget = QListWidget()
 tag_list_widget = QListWidget()
 searching_tag_input = QLineEdit() 
 text_edit = QTextEdit()
+text_edit.setDisabled(True)
 
 main_layout = QHBoxLayout()
 
