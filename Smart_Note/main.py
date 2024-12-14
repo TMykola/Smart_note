@@ -28,22 +28,34 @@ def add_tag():
     try:
         name_note = note_list_widget.currentItem().text()
         name_tag = QInputDialog().getText(QInputDialog(), "Введення тега:", "Введіть назву тега:")[0]
-        data[name_file]["TAG"].append(name_tag)
+        data[name_note]["TAG"].append(name_tag)
         write_json(name_file, data)
         tag_list_widget.addItem(name_tag)
     except:
         error("Щоб створити тег, спочатку виберіть нотаток")
+        
 def remove_tag():
     try:
         name_note = note_list_widget.currentItem().text()
         name_tag = tag_list_widget.currentItem().text()
         data[name_note]["TAG"].remove(name_tag)
-        write_json(name_note, data)
-        tag_list_widget.removeItemWidget(name_tag)
+        write_json(name_file, data)
+        tag_list_widget.clear()
+        show_tag(name_note)
     except:
         error("Щоб видаляти тег, спочатку виберіт нотаток а потім тег")
 
-
+def searching_tag():
+    try:
+        stag = searching_tag_input.text()
+        keys = list(data.keys())
+        for key in keys:
+            for TAG in data[key]["TAG"]: 
+                if TAG == stag:
+                    pass
+                    write_json(name_file, data)
+    except:
+        error("Щоб знайти, спочатку напишіть назву тега")
 def save_file():
     try:
         name_note = note_list_widget.currentItem().text()
@@ -60,7 +72,6 @@ def show_text():
 
 def remove_note():
     try:
-        
         name_note = note_list_widget.currentItem().text()
         del data[name_note]
         write_json(name_file, data)
@@ -71,7 +82,7 @@ def remove_note():
     except:
         error("Щоб видалити, спочатку виберіть нотаток!")
 
-
+search_tag.clicked.connect(searching_tag)
 delete_tag.clicked.connect(remove_tag)
 create_tag.clicked.connect(add_tag)
 delete_note.clicked.connect(remove_note)
