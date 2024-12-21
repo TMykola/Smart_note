@@ -49,11 +49,14 @@ def searching_tag():
     try:
         stag = searching_tag_input.text()
         keys = list(data.keys())
+        result = list()
         for key in keys:
             for TAG in data[key]["TAG"]: 
                 if TAG == stag:
-                    pass
-                    write_json(name_file, data)
+                    result.append(key)
+        note_list_widget.clear()
+        note_list_widget.addItems(result)
+        write_json(name_file, data)
     except:
         error("Щоб знайти, спочатку напишіть назву тега")
 def save_file():
